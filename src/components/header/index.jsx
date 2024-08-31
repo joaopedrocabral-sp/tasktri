@@ -1,10 +1,8 @@
 import { HeaderContainer, ButtonModeToggler } from "./styles";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
-import task3logo from "../../assets/TASK-3-LOGO.PNG";
+import task3logo from "../../assets/task3logo.png"
 import { useState, useEffect } from "react";
 import { verifyLogin, logOut } from "../../hooks/auth";
-
-
 
 function Header({ theme, themeToggler }) {
 
