@@ -74,6 +74,12 @@ export const TasksContainer = styled.div`
             &:hover{
                 background-color: ${props => props.theme.color.purple.primary};
                 border-radius: 5px;
+                color: ${props => props.theme.color.white};
+
+                @media (max-width: 767px){
+                    background-color: ${props => props.theme.color.transparent};
+                    color: ${props => props.theme.color.textColor};
+                }
             }
         }
     }

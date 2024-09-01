@@ -106,7 +106,7 @@ export const FormSelect = styled.select`
     font-weight: 400;
     height: 40px;
     margin-top: 5px;
-    text-align: center;
+    text-align: center !important;
 
     @media (max-width: 767px){
         font-size: 16px;
