@@ -5,6 +5,7 @@ import { TasksContainer, DateTasksTitle, Container, InfoContainer } from './styl
 import { getDisplayDate } from '../../hooks/getDisplayDate';
 import { fetchUsername } from '../../hooks/fetchUsername';
 import { fetchTasks } from '../../hooks/fetchTasks';
+import EditTaskModal from '../editTask';
 
 function FetchTasks({ date }) {
     const [tasks, setTasks] = useState({
@@ -14,6 +15,7 @@ function FetchTasks({ date }) {
     })
     const [error, setError] = useState(null)
     const [username, setUsername] = useState('')
+    const [selectedTask, setSelectedTask] = useState(null)
 
     useEffect(() => {
         fetchTasks(setTasks, setError, date)
@@ -44,6 +46,14 @@ function FetchTasks({ date }) {
         }
     }
 
+    const openEditModal = (task) => {
+        setSelectedTask(task);
+    };
+
+    const closeModal = () => {
+        setSelectedTask(null);
+    };
+
     if (error) {
         return <p style={{ color: 'red' }}>{error}</p>
     }
@@ -59,7 +69,11 @@ function FetchTasks({ date }) {
                 <div>
                     <ul>
                         {tasks.morning.map(task => (
-                            <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                            <li key={task.id} onClick={(e) => {
+                                if (e.target.tagName !== 'INPUT') {
+                                    openEditModal(task);
+                                }
+                            }} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
                                 <input
                                     type="checkbox"
                                     checked={task.completed || false}
@@ -76,7 +90,11 @@ function FetchTasks({ date }) {
                 <div>
                     <ul>
                         {tasks.afternoon.map(task => (
-                            <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                            <li key={task.id} onClick={(e) => {
+                                if (e.target.tagName !== 'INPUT') {
+                                    openEditModal(task);
+                                }
+                            }} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
                                 <input
                                     type="checkbox"
                                     checked={task.completed}
@@ -93,7 +111,11 @@ function FetchTasks({ date }) {
                 <div>
                     <ul>
                         {tasks.evening.map(task => (
-                            <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                            <li key={task.id} onClick={(e) => {
+                                if (e.target.tagName !== 'INPUT') {
+                                    openEditModal(task);
+                                }
+                            }} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
                                 <input
                                     type="checkbox"
                                     checked={task.completed}
@@ -105,6 +127,14 @@ function FetchTasks({ date }) {
                     </ul>
                 </div>
             </TasksContainer>
+
+            {selectedTask && (
+                <EditTaskModal
+                    task={selectedTask}
+                    date={date}
+                    onClose={closeModal}
+                />
+            )}
         </Container>
     )
 }

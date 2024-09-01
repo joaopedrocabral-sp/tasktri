@@ -46,7 +46,7 @@ function CreateTask({ onClose }) {
             
             setTimeout(() => {
                 if (onClose) onClose()
-            }, 2000)
+            }, 500)
         } catch (err) {
             console.error("Erro ao criar tarefa:", err)
             setError("Falha ao criar a tarefa. Tente novamente.")

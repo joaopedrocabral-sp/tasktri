@@ -68,6 +68,13 @@ export const TasksContainer = styled.div`
         & li{
             text-align: left;
             line-height: 30px;
+            cursor: pointer;
+            padding: 0px 4px;
+
+            &:hover{
+                background-color: ${props => props.theme.color.purple.primary};
+                border-radius: 5px;
+            }
         }
     }
 
@@ -80,6 +87,7 @@ export const TasksContainer = styled.div`
         border-radius: 5px;
         margin-bottom: -4px;
         margin-right: 5px;
+        background-color: ${props => props.theme.color.white};
     }
 
     & input:checked{

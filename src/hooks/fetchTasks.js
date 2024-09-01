@@ -1,31 +1,31 @@
 import { db, auth } from '../services/firebaseConfig';
-import { collection, getDocs, query } from 'firebase/firestore';
+import { collection, query, onSnapshot } from 'firebase/firestore';
 
 export const fetchTasks = async (setTasks, setError, date) => {
-    const user = auth.currentUser
-    if (user) {
-        try {
-            const tasksCollection = collection(db, "usersTasks", user.uid, date)
-            const tasksQuery = query(tasksCollection)
-            const querySnapshot = await getDocs(tasksQuery)
+    const user = auth.currentUser;
+        if (user) {
+            const tasksCollection = collection(db, "usersTasks", user.uid, date);
+            const tasksQuery = query(tasksCollection);
 
-            const tasksByPeriod = {
-                morning: [],
-                afternoon: [],
-                evening: []
-            };
+            // Listener em tempo real
+            const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
+                const tasksByPeriod = {
+                    morning: [],
+                    afternoon: [],
+                    evening: []
+                };
 
-            querySnapshot.forEach(doc => {
-                const task = doc.data()
-                tasksByPeriod[task.period].push({ id: doc.id, ...task })
+                querySnapshot.forEach(doc => {
+                    const task = doc.data();
+                    tasksByPeriod[task.period].push({ id: doc.id, ...task });
+                });
+
+                setTasks(tasksByPeriod);
             });
 
-            setTasks(tasksByPeriod)
-        } catch (err) {
-            console.error("Erro ao buscar tarefas:", err)
-            setError("Falha ao buscar tarefas. Tente novamente.")
+            // Cleanup on unmount
+            return () => unsubscribe();
+        } else {
+            setError("Usuário não autenticado.");
         }
-    } else {
-        setError("Usuário não autenticado.")
-    }
 }
