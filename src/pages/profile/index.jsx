@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../../services/firebaseConfig';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import { FormButton, FormContainer, FormInput, Container, SignOutButton, SubContainer } from './styles';
 import { logOut } from '../../hooks/auth';
 import { verifyLogin } from '../../hooks/auth';
@@ -27,7 +27,10 @@ const Profile = () => {
                         const data = docSnap.data()
                         setUsername(data.name || '')
                     } else {
-                        setMessage("Perfil não encontrado!")
+                        // Criar o documento com um nome de usuário padrão
+                        await setDoc(userRef, { name: 'Usuário' })
+                        setUsername('Usuário')
+                        setMessage("Perfil criado com nome padrão.")
                     }
                 } catch (err) {
                     console.error("Erro ao buscar o nome do usuário:", err)

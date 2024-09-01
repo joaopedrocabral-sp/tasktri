@@ -4,10 +4,10 @@ import { doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { Modal, ModalContent, FormContainer, FormInput, FormSelect, ButtonDiv, ConfirmButton, CancelButton, DeleteButton } from './styles';
 
 function EditTaskModal({ task, date, onClose }) {
-    const [taskName, setTaskName] = useState(task.name);
-    const [period, setPeriod] = useState(task.period);
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
+    const [taskName, setTaskName] = useState(task.name)
+    const [period, setPeriod] = useState(task.period)
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
 
     const handleEdit = async (e) => {
         e.preventDefault()

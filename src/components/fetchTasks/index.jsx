@@ -47,11 +47,11 @@ function FetchTasks({ date }) {
     }
 
     const openEditModal = (task) => {
-        setSelectedTask(task);
+        setSelectedTask(task)
     };
 
     const closeModal = () => {
-        setSelectedTask(null);
+        setSelectedTask(null)
     };
 
     if (error) {
