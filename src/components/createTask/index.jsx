@@ -38,6 +38,7 @@ function CreateTask({ onClose }) {
             await addDoc(tasksCollection, {
                 name: taskName,
                 period: period,
+                completed: false,
                 createdAt: new Date()
             });
 

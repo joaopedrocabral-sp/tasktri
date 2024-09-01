@@ -4,12 +4,13 @@ import { verifyLogin } from "../../hooks/auth";
 import CreateTask from "../../components/createTask";
 import FetchTasks from "../../components/fetchTasks";
 import { DateInput } from "./styles";
+import { getCurrentDate } from "../../hooks/getCurrentDate";
 
 function Home() {
 
     const [userLogged, setUserLogged] = useState(null);
     const [showCreateTask, setShowCreateTask] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); 
+    const [selectedDate, setSelectedDate] = useState(getCurrentDate());
 
     const handleClick = () => {
         setShowCreateTask(!showCreateTask);
