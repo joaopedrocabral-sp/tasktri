@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import Header from "./components/header";
 import LogIn from "./pages/logIn";
 import Register from "./pages/register";
+import Profile from "./pages/profile";
 
 function AppRoutes({theme, themeToggler}){
     return(
@@ -12,6 +13,7 @@ function AppRoutes({theme, themeToggler}){
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LogIn />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
     )

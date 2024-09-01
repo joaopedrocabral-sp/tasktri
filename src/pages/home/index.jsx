@@ -8,25 +8,25 @@ import { getCurrentDate } from "../../hooks/getCurrentDate";
 
 function Home() {
 
-    const [userLogged, setUserLogged] = useState(null);
-    const [showCreateTask, setShowCreateTask] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(getCurrentDate());
+    const [userLogged, setUserLogged] = useState(null)
+    const [showCreateTask, setShowCreateTask] = useState(false)
+    const [selectedDate, setSelectedDate] = useState(getCurrentDate())
 
     const handleClick = () => {
-        setShowCreateTask(!showCreateTask);
+        setShowCreateTask(!showCreateTask)
     };
 
     const closeCreateTaskModal = () => {
-        setShowCreateTask(false);
+        setShowCreateTask(false)
     };
 
     const handleDateChange = (e) => {
-        setSelectedDate(e.target.value);
+        setSelectedDate(e.target.value)
     };
 
     useEffect(() => {
-        verifyLogin(setUserLogged);
-    }, []);
+        verifyLogin(setUserLogged)
+    }, [])
 
     if (userLogged === null) {
         return <div>Carregando...</div>

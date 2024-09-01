@@ -19,8 +19,11 @@ export const ButtonModeToggler = styled.button`
     padding: 6px 10px;
 `
 
-export const SignOutButton = styled.button`
-    padding: 12px 18px;
-    background-color: ${props => props.theme.color.purple.tertiary};
-    color: ${props => props.theme.color.white};
+export const ProfileButton = styled.div`
+    & svg{
+        width: 30px;
+        height: 30px;
+        margin-bottom: -8px;
+        fill: ${props => props.theme.color.white};
+    }
 `

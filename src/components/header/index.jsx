@@ -1,21 +1,23 @@
-import { HeaderContainer, ButtonModeToggler, SignOutButton } from "./styles";
+import { HeaderContainer, ButtonModeToggler, ProfileButton } from "./styles";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
+import { IoMdPerson } from "react-icons/io";
 import task3logo from "../../assets/task3logo.png"
 import { useState, useEffect } from "react";
-import { verifyLogin, logOut } from "../../hooks/auth";
+import { verifyLogin } from "../../hooks/auth";
+import { Link } from "react-router-dom";
 
 function Header({ theme, themeToggler }) {
 
-    const [userLogged, setUserLogged] = useState(null);
+    const [userLogged, setUserLogged] = useState(null)
     useEffect(() => {
-        verifyLogin(setUserLogged);
+        verifyLogin(setUserLogged)
     }, []);
 
     if (userLogged === null || userLogged === "") {
         return (
             <HeaderContainer>
                 <div className="header-boxed header-flex-container">
-                    <img src={task3logo} alt="" />
+                    <Link to="/"><img src={task3logo} alt="" /></Link>
                     <ButtonModeToggler className="modeToggler" onClick={themeToggler}>
                         {theme == "light" ? (
                             <MdOutlineDarkMode style={{ fontSize: "30px", marginBottom: "-4px" }} />
@@ -30,7 +32,7 @@ function Header({ theme, themeToggler }) {
         return (
             <HeaderContainer>
                 <div className="header-boxed header-flex-container">
-                    <img src={task3logo} alt="" />
+                    <Link to="/"><img src={task3logo} alt="" /></Link>
                     <div className="row-flex-container">
                         <ButtonModeToggler className="modeToggler" onClick={themeToggler}>
                             {theme == "light" ? (
@@ -39,9 +41,11 @@ function Header({ theme, themeToggler }) {
                                 <MdOutlineLightMode style={{ fontSize: "30px", marginBottom: "-4px" }} />
                             )}
                         </ButtonModeToggler>
-                        <SignOutButton onClick={() => logOut()}>
-                            Sair
-                        </SignOutButton>
+                        <ProfileButton>
+                            <Link to="/profile">
+                                <IoMdPerson />
+                            </Link>
+                        </ProfileButton>
                     </div>
                 </div>
             </HeaderContainer>

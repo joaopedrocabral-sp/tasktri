@@ -1,60 +1,57 @@
 import { useState, useEffect } from 'react';
 import { db, auth } from '../../services/firebaseConfig';
-import { getAuth } from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore";
 import { Modal, ModalContent, CancelButton, ConfirmButton, FormContainer, FormInput, FormSelect, ButtonDiv } from './styles';
 
 function CreateTask({ onClose }) {
-    const [taskName, setTaskName] = useState("");
-    const [taskDate, setTaskDate] = useState("");
-    const [period, setPeriod] = useState("morning");
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
-    const [userId, setUserId] = useState(null);
+    const [taskName, setTaskName] = useState("")
+    const [taskDate, setTaskDate] = useState("")
+    const [period, setPeriod] = useState("morning")
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
+    const [userId, setUserId] = useState(null)
 
     useEffect(() => {
-        const user = auth.currentUser;
+        const user = auth.currentUser
         if (user) {
-            setUserId(user.uid);
+            setUserId(user.uid)
         } else {
-            setError("Usuário não autenticado.");
+            setError("Usuário não autenticado.")
         }
-    }, [auth]);
+    }, [auth])
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError(null);
-        setSuccess(null);
+        e.preventDefault()
+        setError(null)
+        setSuccess(null)
 
         if (!userId) {
-            setError("Usuário não autenticado.");
-            return;
+            setError("Usuário não autenticado.")
+            return
         }
 
         try {
-            const formattedDate = taskDate;
-
-            const tasksCollection = collection(db, "usersTasks", userId, formattedDate);
+            const tasksCollection = collection(db, "usersTasks", userId, taskDate)
             await addDoc(tasksCollection, {
                 name: taskName,
                 period: period,
                 completed: false,
                 createdAt: new Date()
-            });
+            })
 
-            setSuccess("Tarefa criada com sucesso!");
-            setTaskName("");
-            setTaskDate("");
-            setPeriod("morning");
-
+            setSuccess("Tarefa criada com sucesso!")
+            setTaskName("")
+            setTaskDate("")
+            setPeriod("morning")
+            
             setTimeout(() => {
-                if (onClose) onClose();
-            }, 2000);
+                if (onClose) onClose()
+            }, 2000)
         } catch (err) {
-            console.error("Erro ao criar tarefa:", err);
-            setError("Falha ao criar a tarefa. Tente novamente.");
+            console.error("Erro ao criar tarefa:", err)
+            setError("Falha ao criar a tarefa. Tente novamente.")
         }
-    };
+    }
 
     return (
         <Modal>
@@ -103,7 +100,7 @@ function CreateTask({ onClose }) {
                 </FormContainer>
             </ModalContent>
         </Modal>
-    );
+    )
 }
 
 export default CreateTask;
