@@ -23,8 +23,9 @@ export const ModalContent = styled.div`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1001;
 
-    & h3{
-        font-weight: 600;
+    & h2{
+        font-size: 30px;
+        color: ${props => props.theme.color.textColorAlternative};
     }
 
     & p{
@@ -33,18 +34,31 @@ export const ModalContent = styled.div`
 `
 
 export const CancelButton = styled.button`
-    padding: 4px 8px;
+    font-size: 16px;
+    width: 42%;
+    padding: 5px 8px;
     border-radius: 20px;
     border: 2px solid ${props => props.theme.color.purple.primary};
     background-color: ${props => props.theme.color.backgroundColor};
+
+    @media (max-width: 767px){
+        width: 100%;
+    }
 `
 
 export const ConfirmButton = styled.button`
-    padding: 4px 8px;
+    font-size: 16px;
+    width: 58%;
+    padding: 5px 8px;
     border-radius: 20px;
     border: 2px solid ${props => props.theme.color.purple.primary};
     background-color: ${props => props.theme.color.purple.primary};
     color: ${props => props.theme.color.white};
+
+    @media (max-width: 767px){
+        width: 100%;
+        margin-bottom: 5px;
+    }
 `
 
 export const FormContainer = styled.form`
@@ -53,14 +67,20 @@ export const FormContainer = styled.form`
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 10px;
+    gap: 12px;
+
+    & label{
+        font-size: 18px;
+        font-weight: 700;
+    }
 `
 
 export const FormInput = styled.input`
     width: 100%;
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 5px 10px;
     border: 2px solid ${props => props.theme.color.purple.primary};
+    background-color: ${props => props.theme.color.backgroundColor};
     -moz-appearance: none;
     appearance: none;
     font-size: 16px;
@@ -78,6 +98,7 @@ export const FormSelect = styled.select`
     border-radius: 20px;
     padding: 5px 10px;
     border: 2px solid ${props => props.theme.color.purple.primary};
+    background-color: ${props => props.theme.color.backgroundColor};
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -88,5 +109,17 @@ export const FormSelect = styled.select`
 
     @media (max-width: 767px){
         font-size: 16px;
+    }
+`
+
+export const ButtonDiv = styled.div`
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+    @media (max-width: 767px){
+        flex-direction: column;
     }
 `

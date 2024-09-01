@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { db, auth } from '../../services/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore";
-import { Modal, ModalContent, CancelButton, ConfirmButton, FormContainer, FormInput, FormSelect } from './styles';
+import { Modal, ModalContent, CancelButton, ConfirmButton, FormContainer, FormInput, FormSelect, ButtonDiv } from './styles';
 
 function CreateTask({ onClose }) {
     const [taskName, setTaskName] = useState("");
@@ -45,6 +45,10 @@ function CreateTask({ onClose }) {
             setTaskName("");
             setTaskDate("");
             setPeriod("morning");
+
+            setTimeout(() => {
+                if (onClose) onClose();
+            }, 2000);
         } catch (err) {
             console.error("Erro ao criar tarefa:", err);
             setError("Falha ao criar a tarefa. Tente novamente.");
@@ -54,7 +58,7 @@ function CreateTask({ onClose }) {
     return (
         <Modal>
             <ModalContent>
-                <h1>Criar Tarefa</h1>
+                <h2>Criar Tarefa</h2>
                 <FormContainer onSubmit={handleSubmit}>
                     <div className='w-100'>
                         <label htmlFor="taskName">Tarefa</label>
@@ -89,10 +93,10 @@ function CreateTask({ onClose }) {
                             <option value="evening">Noite</option>
                         </FormSelect>
                     </div>
-                    <div>
+                    <ButtonDiv>
                         <ConfirmButton type="submit">Criar Tarefa</ConfirmButton>
                         <CancelButton onClick={onClose}>Cancelar</CancelButton>
-                    </div>
+                    </ButtonDiv>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     {success && <p style={{ color: 'green' }}>{success}</p>}
                 </FormContainer>
