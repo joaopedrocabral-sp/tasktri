@@ -1,4 +1,4 @@
-import { HeaderContainer, ButtonModeToggler } from "./styles";
+import { HeaderContainer, ButtonModeToggler, SignOutButton } from "./styles";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import task3logo from "../../assets/task3logo.png"
 import { useState, useEffect } from "react";
@@ -31,7 +31,7 @@ function Header({ theme, themeToggler }) {
             <HeaderContainer>
                 <div className="header-boxed header-flex-container">
                     <img src={task3logo} alt="" />
-                    <div>
+                    <div className="row-flex-container">
                         <ButtonModeToggler className="modeToggler" onClick={themeToggler}>
                             {theme == "light" ? (
                                 <MdOutlineDarkMode style={{ fontSize: "30px", marginBottom: "-4px" }} />
@@ -39,9 +39,9 @@ function Header({ theme, themeToggler }) {
                                 <MdOutlineLightMode style={{ fontSize: "30px", marginBottom: "-4px" }} />
                             )}
                         </ButtonModeToggler>
-                        <button className="mobile-hidden" onClick={() => logOut()}>
+                        <SignOutButton onClick={() => logOut()}>
                             Sair
-                        </button>
+                        </SignOutButton>
                     </div>
                 </div>
             </HeaderContainer>

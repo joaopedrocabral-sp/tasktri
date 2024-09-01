@@ -30,4 +30,5 @@ export const FormButton = styled.button`
     background-color: ${props => props.theme.color.purple.primary};
     padding: 10px 20px;
     color: ${props => props.theme.color.white};
+    font-size: 16px;
 `

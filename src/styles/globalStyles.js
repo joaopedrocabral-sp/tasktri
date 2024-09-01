@@ -166,6 +166,9 @@ html{
     li{
         list-style-type: none
     }
+    input{
+        font-size: 16px;
+    }
     @media (max-width: 767px){
         .header-boxed{
             padding: 20px;
@@ -173,7 +176,6 @@ html{
         .header-flex-container{
             flex-direction: row;
             gap: 10px;
-            justify-content: center;
         }
         .header-flex-container-2{
             justify-content: space-between !important;

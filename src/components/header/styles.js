@@ -18,3 +18,9 @@ export const ButtonModeToggler = styled.button`
     color: ${props => props.theme.color.textColorAlternative};
     padding: 6px 10px;
 `
+
+export const SignOutButton = styled.button`
+    padding: 10px 15px;
+    background-color: ${props => props.theme.color.purple.tertiary};
+    color: ${props => props.theme.color.white};
+`
