@@ -181,7 +181,7 @@ html{
             justify-content: space-between !important;
         }
         .section-boxed{
-            padding: 50px 20px;
+            padding: 30px 20px;
         }
         .section-boxed-thin{
             padding: 30px 20px;

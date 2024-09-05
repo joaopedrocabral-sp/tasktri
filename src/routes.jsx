@@ -4,6 +4,7 @@ import Header from "./components/header";
 import LogIn from "./pages/logIn";
 import Register from "./pages/register";
 import Profile from "./pages/profile";
+import ListPage from "./pages/list";
 
 function AppRoutes({theme, themeToggler}){
     return(
@@ -11,6 +12,7 @@ function AppRoutes({theme, themeToggler}){
         <Header theme={theme} themeToggler={themeToggler} />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/list" element={<ListPage />} />
                 <Route path="/login" element={<LogIn />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<Profile />} />

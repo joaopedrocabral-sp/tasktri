@@ -10,42 +10,7 @@ export const Container = styled.div`
     max-width: 500px;
 `
 
-export const InfoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-    h2{
-        margin-bottom: 0;
-        font-size: 28px;
-
-        @media (max-width: 767px){
-            font-size: 22px;
-        }
-
-        & span{
-            color: ${props => props.theme.color.purple.primary};
-        }
-    }
-`
-
-export const DateTasksTitle = styled.h2`
-    font-size: 26px !important;
-    margin-bottom: 15px !important;
-
-    @media (max-width: 767px){
-        font-size: 20px !important;
-    }
-
-    & span{
-        color: ${props => props.theme.color.white} !important;
-        background-color: ${props => props.theme.color.purple.primary};
-        padding: 3px 6px;
-        border-radius: 10px;
-    }
-`
-
-export const TasksContainer = styled.div`
+export const ItemsContainer = styled.div`
     width: 100%;
     border-radius: 20px;
     border: 2px solid ${props => props.theme.color.purple.primary};

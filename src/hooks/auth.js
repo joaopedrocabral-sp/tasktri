@@ -1,15 +1,21 @@
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+import { auth, db } from "../services/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
 
-export async function register(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            return userCredential.user;
-        })
-        .catch((err) => {
-            alert(err);
-            throw err; 
-        });
+export async function register(email, password, name) {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const userRef = doc(db, "usersTasks", user.uid, "profile", "info");
+        await setDoc(userRef, { name: name || 'Usuário' });
+
+        return user;
+    } catch (err) {
+        console.error("Erro ao criar o usuário ou documento:", err);
+        alert(err.message);
+        throw err;
+    }
 }
 
 export async function login(email, password) {

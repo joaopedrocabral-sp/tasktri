@@ -27,3 +27,12 @@ export const ProfileButton = styled.div`
         fill: ${props => props.theme.color.white};
     }
 `
+
+export const ListButton = styled.div`
+    & svg{
+        width: 26px;
+        height: 26px;
+        margin-bottom: -8px;
+        fill: ${props => props.theme.color.white};
+    }
+`

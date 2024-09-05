@@ -9,7 +9,7 @@ function LogIn() {
     const [userLogged, setUserLogged] = useState(null)
 
     useEffect(() => {
-        verifyLogin(setUserLogged);
+        verifyLogin(setUserLogged)
     }, [])
 
     const [emailInput, setEmailInput] = useState("")
