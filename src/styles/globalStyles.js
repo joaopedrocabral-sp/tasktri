@@ -162,6 +162,7 @@ html{
     }
     a{
         text-decoration: none;
+        display: flex;
     }
     li{
         list-style-type: none

@@ -11,19 +11,19 @@ export const HeaderContainer = styled.header`
     & img{
         width: 150px;
     }
+
 `
 
 export const ButtonModeToggler = styled.button`
     background-color: ${props => props.theme.color.backgroundColor};
     color: ${props => props.theme.color.textColorAlternative};
-    padding: 6px 10px;
+    padding: 6px 8px;
 `
 
 export const ProfileButton = styled.div`
     & svg{
         width: 30px;
         height: 30px;
-        margin-bottom: -8px;
         fill: ${props => props.theme.color.white};
     }
 `
@@ -32,7 +32,6 @@ export const ListButton = styled.div`
     & svg{
         width: 26px;
         height: 26px;
-        margin-bottom: -8px;
         fill: ${props => props.theme.color.white};
     }
 `
